@@ -1,7 +1,1 @@
-{
-  "name": "fury",
-  "compatibility_date": "2026-09-24",
-  "assets": {
-    "directory": "."
-  }
-}
+{"name":"fury","compatibility_date":"2026-09-24","assets":{"directory":"."}}
