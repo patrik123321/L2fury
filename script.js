@@ -1,1 +1,15 @@
-const nav=document.querySelector('#nav'),menu=document.querySelector('#menu');menu?.addEventListener('click',()=>nav.classList.toggle('open'));document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.lang').forEach(x=>x.classList.remove('active'));b.classList.add('active');const l=b.dataset.l;document.querySelectorAll('[data-en]').forEach(e=>e.textContent=e.dataset[l]);document.documentElement.lang=l==='ka'?'ka':'en';}));
+const translations={};
+document.querySelectorAll("[data-ka][data-en]").forEach(el=>{
+  translations[el.dataset.ka]={ka:el.dataset.ka,en:el.dataset.en};
+});
+const buttons=document.querySelectorAll(".lang");
+function setLang(lang){
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-ka][data-en]").forEach(el=>{
+    el.textContent=el.dataset[lang];
+  });
+  buttons.forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
+  localStorage.setItem("l2fury-lang",lang);
+}
+buttons.forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+setLang(localStorage.getItem("l2fury-lang")||"ka");
